@@ -6,9 +6,14 @@ Group B-7: Jeffrey Lan, Yiding Zhang, Minh Le, Wencheng Zhang
 
 ## Domain of interest
 
-### Why are you interested in this field/domain?
-### What other examples of data driven project have you found related to this domain (share at least 3)?
-### What data-driven questions do you hope to answer about this domain (share at least 3)?
+Suggestion: 
+- Popular categories of music on Spotify last year? 10 years? 5 years?
+- Popular categories of movies on Netflix, Disney Plus last year? 10 years? 5 years?
+- Change/trend of weather in WA. 
+
+Why are you interested in this field/domain?
+What other examples of data driven project have you found related to this domain (share at least 3)?
+What data-driven questions do you hope to answer about this domain (share at least 3)?
 
 ## Finding Data
 
