@@ -2,52 +2,100 @@
 
 Group B-7: Jeffrey Lan, Yiding Zhang, Minh Le, Wencheng Zhang
 
-# NAME OF PROJECT ??
-
-Suggestion: 
-- Popular categories of music on Spotify last year? 10 years? 5 years?
-- Popular categories of movies on Netflix, Disney Plus last year? 10 years? 5 years?
-- Change/trend of weather in WA. 
-
+# WILDFIRES IN THE US
 
 ## Domain of interest
 
-- Why are you interested in this field/domain?
-- What other examples of data driven project have you found related to this domain (share at least 3)?
-- What data-driven questions do you hope to answer about this domain (share at least 3)?
+_**Why are you interested in this field/domain?**_
+
+The wildfires incidents are increasing recently. This project can help paint the picture of the state of the earth and how it is important to protect the forest and our environment.
+
+_**What other examples of data driven project have you found related to this domain (share at least 3)?**_
+
+[Fighting Wildfires with Data](https://www.microsoft.com/en-us/research/blog/fighting-wildfires-with-data/)
+
+[The impact of land ownership, firefighting, and reserve status on fire probability in California](https://iopscience.iop.org/article/10.1088/1748-9326/aaaad1)
+
+[Improving the Health of California's Headwater Forests](https://forests.berkeley.edu/research/past-projects/headwaters)
+
+_**What data-driven questions do you hope to answer about this domain (share at least 3)?**_
+
+- The number of wildfires each year in the US and in each state, and how that number progresses over the year.
+- Which state has the maximum number of wildfires each year, and how that number progresses over the years.
+- Which states appear most frequently in the result of the previous question?
+- Which state appears the second most frequently?
+- How much has the government spent on the cost of fire suppression?
+
 
 ## Finding Data
 
-Identify and download at least 3 sources of data related to your domain of interest described above (into a folder you create called data/
+### 1 - Data set 1:
 
-For **each source** of data, provide the following information:
+_**Where did you download the data (e.g., a web URL)?**_
 
-- Where did you download the data (e.g., a web URL)?
+https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires
 
-- How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?
+_**How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?**_
 
-- How many observations (rows) are in your data?
+This data publication contains a spatial database of wildfires that occurred in the United States from 1992 to 2015. This dataset was originally generated to support the national Fire Program Analysis (FPA) system. The wildfire records are acquired from the reporting systems of federal, state, and local fire organizations.
 
-- How many features (columns) are in the data?
+_**How many observations (rows) are in your data?**_
 
-- What questions (from above) can be answered using the data in this dataset?
+1.88 million rows
 
-## Data Resources
+_**How many features (columns) are in the data?**_
 
-For some ideas on where you can find interesting datasets: 
+130 columns
 
-US Census Data: https://data.census.gov/cedsci/ (Links to an external site.)
+_**What questions (from above) can be answered using the data in this dataset?**_
 
-Kaggle:  https://www.kaggle.com/datasets (Links to an external site.)
+- The number of wildfires each year in the US and in each state, and how that number progresses over the year.
+- Which state has the maximum number of wildfires each year, and how that number progresses over the years.
+- Which states appear most frequently in the result of the previous question, which state appears the second most frequently, etc.
 
-538: https://data.fivethirtyeight.com/ (Links to an external site.)
+### 2 - Data set 2:
 
-UN data: https://data.un.org/ (Links to an external site.)
+_**Where did you download the data (e.g., a web URL)?**_
 
-https://www.data.gov/ (Links to an external site.)
+https://archive.ics.uci.edu/ml/datasets/forest+fires
 
-World Bank Datasets: https://data.worldbank.org/ (Links to an external site.)
+_**How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?**_
 
-Submission
+Paulo Cortez and Aníbal Morais, Department of Information Systems, University of Minho, Portugal. The data is about the total number of  wildfires in the US.
 
-For your submission, please submit your website URL of the GitHub repository you'll be using for you final project. Make sure each person submits a URL to canvas!! 
+_**How many observations (rows) are in your data?**_
+
+518 rows
+
+_**How many features (columns) are in the data?**_
+
+13 columns
+
+_**What questions (from above) can be answered using the data in this dataset?**_
+
+The number of wildfires each year in the US and in each state, and how that number progresses over the year.
+
+### 3 - Data set 3:
+
+_**Where did you download the data (e.g., a web URL)?**_
+
+https://www.kaggle.com/datasets/kkhandekar/total-wildfires-acres-affected-1983-2020
+
+_**How was the data collected or generated? Make sure to explain who collected the data (not necessarily the same people that host the data), and who or what the data is about?**_
+
+Total Wildland Fires and Acres (1983-2020). Prior to 1983, the federal wildland fire agencies did not track official wildfire data using current reporting processes. As a result, there is no official data prior to 1983.
+
+_**How many observations (rows) are in your data?**_
+
+37 rows
+	
+_**How many features (columns) are in the data?**_
+
+9 columns
+
+_**What questions (from above) can be answered using the data in this dataset?**_
+
+- Total number of fires in one year
+- Cost of fire suppression.
+
+---END OF LINE---
