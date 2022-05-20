@@ -20,8 +20,6 @@ source("chart3.r")
 
 ## Introduction
 
-***Write an introductory paragraph explaining the domain/data set***
-
 The wildfires incidents are increasing recently. This project can help paint the picture of the state of the earth and how it is important to protect the forest and our environment.
 
 The data is used in this project collected from: <https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires>
@@ -29,8 +27,6 @@ The data is used in this project collected from: <https://www.kaggle.com/dataset
 This data publication contains a spatial database of wildfires that occurred in the United States from 1992 to 2015. This dataset was originally generated to support the national Fire Program Analysis (FPA) system. The wildfire records are acquired from the reporting systems of federal, state, and local fire organizations.
 
 Due to a large dataset, we chose a smaller dataset which included fire reports from 2012-2015.
-
-***Write a summary paragraph that includes information calculated by your summary information function***
 
 ## Summary Information
 
@@ -48,11 +44,9 @@ The least wildfire size class happened during 2012-2015 was __`r summary_info$fi
 
 ## Table
 
-***Render your table and describe pertinent observations found in it***
-
 ### Top 10 biggest fire size during 2012-2015
 
-This table shows the biggest size of wildfires so we can see the damaged that those widlfires caused.
+This table shows the biggest size of wildfires so we can see the damaged that those widlfires caused. There were 5/10 cases happened in 2012 and 3 cases happened in Oregon. 
 
 ```{r top_10_biggest_fire_size, echo=FALSE}
 # Show the top 10 table (specifying the column names to display)
@@ -61,11 +55,11 @@ kable(top_10_biggest_fire_size, col.names = c("FIRE NAME", "STATE", "YEAR", "ACR
 
 ## Charts
 
-***Describe the purpose of each chart (e.g., "this chart was intended to show the relationship between..."), render each chart, and describe pertinent observations found in each chart***
-
 ### 1 - Line chart for Number of wildfires in 2012-2015
 
 This line chart shows the relationship between number of fires in Texas, California, Oregon and Washington during 2012-2015.
+
+From this chart, the number of wildfires in California and Texas were higher than in Oregon and Washington.
 
 ```{r tx_ca_or_wa, echo=FALSE}
 tx_ca_or_wa %>%
@@ -92,11 +86,17 @@ treemap(fire_size_class_count,
 )
 ```
 
-### 3 - Barplot for top 5 wildfires during 2012-2015
+### 3 - Horizontal barplot for Causes of wildfires during 2012-2015
 
-This barplot shows the relationship among top 5 wildfires happened during 2012-2015.
+This horizontal barplot shows the relationship among the causes of wildfires during 2012-2015. From this barplot, debris burning was the cause of the most number of wildfires.
 
-```{r top_5_biggest_fire_size, echo=FALSE}
-ggplot(top_5_biggest_fire_size, aes(x=FIRE_NAME, y=FIRE_SIZE)) + 
-  geom_bar(stat = "identity")
+```{r cause_fire_count, echo=FALSE}
+cause_fire_count %>%
+  ggplot( aes(x=cause, y=number_of_fires)) +
+  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
+  coord_flip() +
+  ggtitle("Causes of wildfires during 2012-2015") +
+  xlab("") +
+  ylab("Number of wildfires") +
+  theme_bw()
 ```
