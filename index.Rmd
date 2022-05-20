@@ -1,0 +1,102 @@
+---
+title: "Exploratory Data Analysis"
+author: "Group BB4 - Jeffrey Lan, Minh Trung Le, Wencheng Zhang, Yiding Zhang"
+date: "05/20/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library("knitr")
+source("summary_information.r")
+source("aggregate.r")
+source("chart1.r")
+source("chart2.r")
+source("chart3.r")
+```
+
+## Introduction
+
+***Write an introductory paragraph explaining the domain/data set***
+
+The wildfires incidents are increasing recently. This project can help paint the picture of the state of the earth and how it is important to protect the forest and our environment.
+
+The data is used in this project collected from: <https://www.kaggle.com/datasets/rtatman/188-million-us-wildfires>
+
+This data publication contains a spatial database of wildfires that occurred in the United States from 1992 to 2015. This dataset was originally generated to support the national Fire Program Analysis (FPA) system. The wildfire records are acquired from the reporting systems of federal, state, and local fire organizations.
+
+Due to a large dataset, we chose a smaller dataset which included fire reports from 2012-2015.
+
+***Write a summary paragraph that includes information calculated by your summary information function***
+
+## Summary Information
+
+The data reveals that the state had the most wildfire cases during 2012-2015 was __`r summary_info$state_fire_count_max$state`__ with __`r summary_info$state_fire_count_max$number_of_fires`__ wildfires.
+
+The state had the least wildfire cases during 2012-2015 was __`r summary_info$state_fire_count_min$state`__ with __`r summary_info$state_fire_count_min$number_of_fires`__ wildfires.
+
+The biggest wildfire size during 2012-2015 was __`r summary_info$max_fire_size$FIRE_NAME`__, and it happened at __`r summary_info$max_fire_size$STATE`__, in __`r summary_info$max_fire_size$FIRE_YEAR`__ with the size __`r summary_info$max_fire_size$FIRE_SIZE`__ arces, and it was classified as class __`r summary_info$max_fire_size$FIRE_SIZE_CLASS`__.
+
+There are 7 wildfire size classes. A is the smallest size and G is the biggest size.
+
+The most wildfire size class happened during 2012-2015 was __`r summary_info$fire_size_class_max$fire_size_class`__, and it happened __`r summary_info$fire_size_class_max$total_number`__ times.
+
+The least wildfire size class happened during 2012-2015 was __`r summary_info$fire_size_class_min$fire_size_class`__, and it happened __`r summary_info$fire_size_class_min$total_number`__ times.
+
+## Table
+
+***Render your table and describe pertinent observations found in it***
+
+### Top 10 biggest fire size during 2012-2015
+
+This table shows the biggest size of wildfires so we can see the damaged that those widlfires caused.
+
+```{r top_10_biggest_fire_size, echo=FALSE}
+# Show the top 10 table (specifying the column names to display)
+kable(top_10_biggest_fire_size, col.names = c("FIRE NAME", "STATE", "YEAR", "ACRES", "CLASS"))
+```
+
+## Charts
+
+***Describe the purpose of each chart (e.g., "this chart was intended to show the relationship between..."), render each chart, and describe pertinent observations found in each chart***
+
+### 1 - Line chart for Number of wildfires in 2012-2015
+
+This line chart shows the relationship between number of fires in Texas, California, Oregon and Washington during 2012-2015.
+
+```{r tx_ca_or_wa, echo=FALSE}
+tx_ca_or_wa %>%
+  ggplot( aes(x=year, y=number_of_fires, group=state, color=state)) +
+  geom_line() +
+  ggtitle("Number of fires among states in 2012-2015") +
+  ylab("Number of fire")
+
+```
+
+### 2 - Treemap for wildfires size classes
+
+This treemap shows the relationship among wildfire size classes based on the number of fires happened during 2012-2015. There are 7 wildfire size classes from A to G, with A is the smallest size class and G is the biggest size class.
+
+From this treemap, B size class was the most wildfires while the G size class had the least number of wildfires.
+
+```{r fire_size_class_count, echo=FALSE}
+treemap(fire_size_class_count,
+        index="fire_size_class",
+        vSize="total_number",
+        type="index",
+        title="Wildfire size class",
+        inflate.labels=T
+)
+```
+
+### 3 - Barplot for top 5 wildfires during 2012-2015
+
+This barplot shows the relationship among top 5 wildfires happened during 2012-2015.
+
+```{r top_5_biggest_fire_size, echo=FALSE}
+ggplot(top_5_biggest_fire_size, aes(x=FIRE_NAME, y=FIRE_SIZE)) + 
+  geom_bar(stat = "identity")
+```
