@@ -1,22 +1,20 @@
-# Summary Information Script
+# Treemap for Causes of wildfires during 1992-2015
 
+source('./summary_information.R')
 library(tidyverse)
-library(treemap)
+library(ggplot2)
 library(dplyr)
 
-# Read Fire dataset from 2012 - 2015
-fire_2012_2015_df <- read.csv("data/Fires_2012_2015.csv")
-
-# Count the total fire size class during 2012-2015
-fire_size_class_count <- fire_2012_2015_df %>%
-  group_by(FIRE_SIZE_CLASS) %>%
+# Count the total causes of wildfires during 2012-2015
+fire_size_count <- fires %>%
+  group_by(FireSizeClass) %>%
   count()
-colnames(fire_size_class_count) <- c("fire_size_class", "total_number") # Format column names
+colnames(fire_size_count) <- c("size", "number_of_fires")
 
-treemap(fire_size_class_count,
-        index="fire_size_class",
-        vSize="total_number",
-        type="index",
-        title="Wildfire size class",
-        inflate.labels=T
-)
+# Barplot
+ggplot(fire_size_count, aes(x=size, y=number_of_fires)) + 
+  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
+  coord_flip() +
+  ggtitle("Wildfires size class during 1992-2015") +
+  xlab("Size Class") +
+  ylab("Number of Wildfires")
