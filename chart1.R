@@ -1,6 +1,6 @@
 # Map chart for wildfires in the US in 2015
 
-source('./summary_information.R')
+source('./aggregate.R')
 library(tidyverse)
 library(usmap)
 
@@ -12,6 +12,16 @@ state_count <- fires %>%
 colnames(state_count) <- c("state", "number") # Format column names
 
 # Plot the map
-plot_usmap(data = state_count, value = "number") +
+current_map = plot_usmap(data = state_count, value = "number") +
   ggtitle("Distribution of wildfires in 2015") +
   scale_fill_continuous(low ="white", high = "red", name = "Fires")
+
+
+top_5_state_progression = fires %>%
+  group_by(State, FireYear) %>%
+  count() %>%
+  filter(State %in% states_with_top_5_total_count$State) %>%
+  ggplot(aes(x=FireYear, y=n, color=State)) +
+  geom_line() +
+  geom_point() +
+  ggtitle("Progression of the Top-5 States with the Most Fire Count During 1992-2015")

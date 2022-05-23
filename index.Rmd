@@ -11,8 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r include=FALSE}
 library("knitr")
-source("summary_information.r")
-source("aggregate.r")
 source("chart1.r")
 source("chart2.r")
 source("chart3.r")
@@ -45,7 +43,7 @@ The least wildfire size class happened during 1992-2015 was __`r summary_info$fi
 
 ## Table
 
-### Top 10 number of fires by states during 1992-2015
+### Fire count by states during 1992-2015
 
 This table shows the Top 10 number of fires by states during 1992-2015. With this info, we can have an overview of total number of wildfires happened in 23 years as well as the which state had the most wildfires.
 
@@ -53,7 +51,7 @@ This table shows the Top 10 number of fires by states during 1992-2015. With thi
 # Show the table of fires by states
 kable(fires_by_states, col.names = c("STATE", "NUMBER OF FIRES"))
 ```
-### Top 10 number of fires by year during 1992-2015
+### Fire count by year during 1992-2015
 
 This table shows the Top 10 number of fires by year during 1992-2015. With this info, we can have an overview of total number of wildfires happened most.
 
@@ -72,9 +70,13 @@ From this chart, we can see the number of wildfires are very high in California 
 
 ```{r state_count, echo=FALSE}
 # Plot the map
-plot_usmap(data = state_count, value = "number") +
-  ggtitle("Distribution of wildfires in 2015") +
-  scale_fill_continuous(low ="white", high = "red", name = "Fires")
+plot(current_map)
+```
+
+The following chart shows the progression of the top-5 states with most fire total counts during 1992-2015.
+
+```{r top_5_state_progression, echo=FALSE}
+plot(top_5_state_progression)
 ```
 
 ### 2 - Horizontal barplot for wildfires size classes during 1992-2015
@@ -92,22 +94,26 @@ ggplot(fire_size_count, aes(x=size, y=number_of_fires)) +
   ylab("Number of Wildfires")
 ```
 
-### 3 - Histogram for Causes of Wildfires During 1992-2015
+
+### 3 - Causes of Wildfires
 
 This historgram shows the relationship among the causes of wildfires during 1992-2015. From this Treemap, debris burning was the cause of the most number of wildfires.
 
 ```{r cause_fire_count, echo=FALSE}
-treemap(cause_fire_count,
-        index="cause",
-        vSize="number_of_fires",
-        type="index",
-        title="Causes of wildfires during 1992-2015",
-        inflate.labels=T
-)
+plot(cause_bar)
 ```
+
+```{r, ehco=FALSE}
+plot(cause_progression)
+```
+
 ### 4 - Bar plot 
-```{r years_with_top_10_fire_count, echo=FALSE}
+
+```{r years_with_top_10_fire, echo=FALSE}
 # Chart for the above: Bar Plot
 ggplot(years_with_top_10_fire_count, aes(x=reorder(FireYear, -Count), y=Count)) +
   geom_bar(stat='identity')
 ```
+
+
+
