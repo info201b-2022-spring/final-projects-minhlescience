@@ -92,9 +92,9 @@ ggplot(fire_size_count, aes(x=size, y=number_of_fires)) +
   ylab("Number of Wildfires")
 ```
 
-### 3 - Treemap for Causes of wildfires during 1992-2015
+### 3 - Histogram for Causes of Wildfires During 1992-2015
 
-This Treemap shows the relationship among the causes of wildfires during 1992-2015. From this Treemap, debris burning was the cause of the most number of wildfires.
+This historgram shows the relationship among the causes of wildfires during 1992-2015. From this Treemap, debris burning was the cause of the most number of wildfires.
 
 ```{r cause_fire_count, echo=FALSE}
 treemap(cause_fire_count,
