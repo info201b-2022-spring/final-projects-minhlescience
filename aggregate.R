@@ -1,18 +1,67 @@
+# Bowang Lan
+
 source('./summary_information.R')
+library(tidyverse)
 library(dplyr)
 
-fires_by_states = fires %>%
+# Count total fire records during during 1992-2015 by states
+fires_by_states <- fires %>%
   group_by(State) %>%
   summarize(Count = n()) %>%
   arrange(-Count)
 
+# States that have the top 10 number of fires during 1992-2015
+states_with_top_10_total_count <- fires_by_states %>%
+  head(10)
+
 state_with_max_fire_count = head(fires_by_states, 1)
 state_with_min_fire = tail(fires_by_states, 1)
 
+#################
+# Fires by year #
+#################
+
+# Total fire count for each year from 1992 to 2015
 fires_by_year = fires %>%
   group_by(FireYear) %>%
+  summarize(Count = n()) %>%
+  arrange(FireYear)
+
+# Chart for the above: Line Plot, progression (chart 1)
+
+
+
+# Years that have the top 10 fire count in US from 1992 to 2015
+years_with_top_10_fire_count <- fires_by_year %>%
+  top_n(10, Count) %>%
+  arrange(-Count)
+years_with_top_10_fire_count$FireYear = as.character(years_with_top_10_fire_count$FireYear)
+# Chart for the above: Bar Plot
+ggplot(years_with_top_10_fire_count, aes(x=reorder(FireYear, -Count), y=Count)) +
+  geom_bar(stat='identity')
+
+
+# What fires had the maximum fire size during 1992-2015?
+top_10_biggest_fire_size <- fires %>%
+  top_n(10, wt = FireSize) %>% # a handy dplyr function!
+  arrange(-FireSize) %>%
+  select(FireName, State, FireYear, FireSize, FireSizeClass)
+
+# Fire count for each fire size class during 1992-2015
+fire_size_class_count <- fires %>%
+  group_by(FireSizeClass) %>%
+  summarise(Count = n())
+colnames(fire_size_class_count) <- c("fire_size_class", "total_number") # Format column names
+
+# Count the total fire in each state during 1992-2015
+state_fire_count <- fires %>%
+  group_by(State) %>%
+  count() %>%
+  arrange(-n)
+colnames(state_fire_count) <- c("State", "Number_of_fires")
   summarise(Count = n()) %>%
   arrange(FireYear)
+
 
 year_with_most_fires = fires_by_year %>% arrange(-Count) %>% head(1)
 year_with_least_fires = fires_by_year %>% arrange(Count) %>% head(1)
@@ -28,10 +77,6 @@ fires_by_state_and_year = fires %>%
 states_year_with_most_fires = fires_by_state_and_year %>%
   group_by(State) %>%
   summarize(MaxYearCount = max(Count), MaxYear = fires_by_state_and_year[which.max(Count)])
-
-fires_by_size_class = fires %>%
-  group_by(FireSizeClass) %>%
-  summarise(Count = n())
 
 
 fires_by_state_and_size_class = fires %>%
