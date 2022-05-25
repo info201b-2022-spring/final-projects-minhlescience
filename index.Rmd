@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r include=FALSE}
 library("knitr")
+library('plotly')
 source("chart1.r")
 source("chart2.r")
 source("chart3.r")
@@ -49,15 +50,15 @@ This table shows the Top 10 number of fires by states during 1992-2015. With thi
 
 ```{r fires_by_states, echo=FALSE}
 # Show the table of fires by states
-kable(fires_by_states, col.names = c("STATE", "NUMBER OF FIRES"))
+kable(states_with_top_10_total_count, col.names = c("State", "Fire Count"))
 ```
-### Fire count by year during 1992-2015
+### Top 10 uears with the most fire counts
 
 This table shows the Top 10 number of fires by year during 1992-2015. With this info, we can have an overview of total number of wildfires happened most.
 
 ```{r fires_by_year, echo=FALSE}
 # Show the table of fires by states
-kable(fires_by_year, col.names = c("YEAR", "NUMBER OF FIRES"))
+kable(years_with_top_10_fire_count, col.names = c("Year", "Fire Count"))
 ```
 
 ## Charts
@@ -68,30 +69,29 @@ This map chart shows the distribution of wildfires across the US in 2015.
 
 From this chart, we can see the number of wildfires are very high in California and Texas.
 
-```{r state_count, echo=FALSE}
+```{r state_count, echo=FALSE, out.width='100%'}
 # Plot the map
-plot(current_map)
+ggplotly(current_map)
 ```
 
 The following chart shows the progression of the top-5 states with most fire total counts during 1992-2015.
 
-```{r top_5_state_progression, echo=FALSE}
-plot(top_5_state_progression)
+```{r top_5_state_progression, echo=FALSE, out.width='100%'}
+ggplotly(top_5_state_progression)
 ```
 
-### 2 - Horizontal barplot for wildfires size classes during 1992-2015
+### 2 - Fire Sizes
 
 This Horizontal barplot shows the relationship among wildfire size classes based on the number of fires happened during 1992-2015. There are 7 wildfire size classes from A to G, with A is the smallest size class and G is the biggest size class.
 
 From this barplot, B size class was the most wildfires while the G size class had the least number of wildfires.
 
-```{r fire_size_count, echo=FALSE}
-ggplot(fire_size_count, aes(x=size, y=number_of_fires)) + 
-  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
-  coord_flip() +
-  ggtitle("Wildfires size class during 1992-2015") +
-  xlab("Size Class") +
-  ylab("Number of Wildfires")
+```{r fire_size_class_bar, echo=FALSE, out.width='100%'}
+ggplotly(fire_size_class_bar)
+```
+
+```{r fire_size_class_progression, echo=FALSE, out.width='100%'}
+ggplotly(fire_size_class_progression)
 ```
 
 
@@ -99,21 +99,11 @@ ggplot(fire_size_count, aes(x=size, y=number_of_fires)) +
 
 This historgram shows the relationship among the causes of wildfires during 1992-2015. From this Treemap, debris burning was the cause of the most number of wildfires.
 
-```{r cause_fire_count, echo=FALSE}
-plot(cause_bar)
+```{r cause_fire_count, echo=FALSE, out.width='100%'}
+ggplotly(cause_bar)
 ```
 
-```{r, ehco=FALSE}
-plot(cause_progression)
+```{r cause_progression, echo=FALSE, out.width='100%'}
+ggplotly(cause_progression)
 ```
-
-### 4 - Bar plot 
-
-```{r years_with_top_10_fire, echo=FALSE}
-# Chart for the above: Bar Plot
-ggplot(years_with_top_10_fire_count, aes(x=reorder(FireYear, -Count), y=Count)) +
-  geom_bar(stat='identity')
-```
-
-
 

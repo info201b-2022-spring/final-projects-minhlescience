@@ -20,8 +20,11 @@ current_map = plot_usmap(data = state_count, value = "number") +
 top_5_state_progression = fires %>%
   group_by(State, FireYear) %>%
   count() %>%
+  rename(Count = n) %>%
   filter(State %in% states_with_top_5_total_count$State) %>%
-  ggplot(aes(x=FireYear, y=n, color=State)) +
+  ggplot(aes(x=FireYear, y=Count, color=State)) +
   geom_line() +
   geom_point() +
-  ggtitle("Progression of the Top-5 States with the Most Fire Count During 1992-2015")
+  ggtitle("Progression of the Top-5 States with the Most Fire Count During 1992-2015") +
+  xlab('Year') +
+  ylab('Fire Count')

@@ -5,16 +5,16 @@ library(tidyverse)
 library(ggplot2)
 library(dplyr)
 
-# Count the total causes of wildfires during 2012-2015
-fire_size_count <- fires %>%
-  group_by(FireSizeClass) %>%
-  count()
-colnames(fire_size_count) <- c("size", "number_of_fires")
+# This file deals with charts associated with Fire Sizes & Fire Size Classes
 
-# Barplot
-ggplot(fire_size_count, aes(x=size, y=number_of_fires)) + 
-  geom_bar(stat="identity", fill="#f68060", alpha=.6, width=.4) +
-  coord_flip() +
-  ggtitle("Wildfires size class during 1992-2015") +
-  xlab("Size Class") +
-  ylab("Number of Wildfires")
+fire_size_class_bar = ggplot(fires_by_fire_size_class, aes(x=FireSizeClass, y=Count)) +
+  geom_col() +
+  ggtitle('Fire Counts in US for Each Fire Size Class during 1992-2015') +
+  xlab('Fire Size Class')
+
+fire_size_class_progression = ggplot(fires_by_fire_size_class_and_year, aes(x=FireYear, y=Count, group=FireSizeClass, color=FireSizeClass)) +
+  geom_line() +
+  geom_point() +
+  ggtitle('Fire Count Progression in US during 1992-2015 for Each Fire Size Class') +
+  xlab('Year') +
+  ylab('Fire Counts')

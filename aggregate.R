@@ -57,8 +57,7 @@ fires_by_year = fires %>%
   arrange(FireYear)
 # Chart for the above: Line Plot, progression (chart 1)
 ggplot(fires_by_year, aes(x=FireYear, y=Count)) +
-  geom_line() + 
-  geom_point() + 
+  geom_area(fill = rgb(0, 0.5, 1, alpha = 0.5)) +
   scale_x_continuous(breaks=seq(from=1992, to=2015, by=1)) +
   theme(panel.grid.minor = element_blank()) +
   ggtitle('Total Fire Counts in US From 1992-2015')
@@ -70,7 +69,7 @@ years_with_top_10_fire_count <- fires_by_year %>%
 years_with_top_10_fire_count$FireYear = as.character(years_with_top_10_fire_count$FireYear)
 # Chart for the above: Bar Plot
 ggplot(years_with_top_10_fire_count, aes(x=reorder(FireYear, -Count), y=Count)) +
-  geom_col(fill=3) +
+  geom_col(fill=4) +
   geom_text(aes(label=Count), vjust=2, color='white') +
   ggtitle('Top 10 Years with the Most Fire counts in US during 1992-2015') +
   xlab('Year') +
@@ -79,6 +78,7 @@ ggplot(years_with_top_10_fire_count, aes(x=reorder(FireYear, -Count), y=Count)) 
 
 #######
 # Fires by fire size
+# Chart file: chart2.R
 #######
 
 fires_by_fire_size_class = fires %>%
@@ -86,20 +86,12 @@ fires_by_fire_size_class = fires %>%
   count() %>%
   rename(Count = n) %>%
   arrange(-Count)
-ggplot(fires_by_fire_size_class, aes(x=FireSizeClass, y=Count)) +
-  geom_col() +
-  geom_text(aes(label=Count), vjust=-1, color='black') +
-  ggtitle('Fire Counts in US for Each Fire Size Class during 1992-2015') +
-  xlab('Fire Size Class')
 
 fires_by_fire_size_class_and_year = fires %>%
   group_by(FireSizeClass, FireYear) %>%
   count() %>%
   rename(Count = n)
-ggplot(fires_by_fire_class_and_year, aes(x=FireYear, y=Count, group=FireSizeClass, color=FireSizeClass)) +
-  geom_line() +
-  geom_point() +
-  ggtitle('Fire Count Progression in US during 1992-2015 for Each Fire Size Class')
+
 
 
 # What fires had the maximum fire size during 1992-2015?
