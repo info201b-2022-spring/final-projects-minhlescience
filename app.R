@@ -112,6 +112,7 @@ summary_page <- tabPanel(
   # Feel free to incorporate tables, graphics, or other elements to convey these conclusions.
   h4("Takeaway1"),
   p("The number of fires in Texas was increased over year, and it was higher than in CA in some specific years."),
+  p("Thus Wildfire can be better prepared in Texas to minimize casualties and economic damage. "),
   br(),
   h4("Takeaway2"),
   p("Fire size class B is dominant in major of fire size class in the US."),
