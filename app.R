@@ -119,6 +119,7 @@ summary_page <- tabPanel(
   br(),
   h4("Takeaway3"),
   p("Debris is the main cause of wildfires in the US. It is always high in every year."),
+  p("Local governments can warn passengers or forest rangers to prevent things like debris that can trigger a wildfire frequently."),
 )
 
 # Pass each page to a multi-page layout (`navbarPage`)
