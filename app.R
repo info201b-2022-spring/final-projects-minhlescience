@@ -33,17 +33,17 @@ intro_page <- tabPanel(
   # what major questions are you seeking to answer, 
   # and what data will you use to answer those questions? 
   # You should include some "additional flare" on this landing page, such as an image.
-  h4("Question 1: The status of wildfires in each state during 1992-2015?"),
-  p("To answer this question, we use data fires and count the number of fires each year."),
-  p("Then filter the state to see the change of fire in each state."),
+  h4("Question 1: Which three states has the most fire count in 2015?"),
+  p("To answer this question, we use data fires, filter it to only 2015's data, group it by states and count the number of fires each year"),
+  p("THen sort the data descendingly and check the first three states we got."),
   br(),
-  h4("Question 2: The status of wildfires in each fire size class during 1992-2015?"),
+  h4("Question 2: Which state in the top 5 states with most fire count during 1992-2015 has the most grown from 2004-2011?"),
   p("To answer this question, we use data fires and count the number of fires each year."),
-  p("Then filter the fire size class to see the change of fire in each state."),
+  p("Then achieve a progression visualization with the data we got."),
   br(),
-  h4("Question 3: The status of wildfires in each cause during 1992-2015?"),
-  p("To answer this question, we use data fires and count the number of fires each year."),
-  p("Then filter the cause to see the change of fire in each state.")
+  h4("Question 3: Three most common reason causing fire?"),
+  p("To answer this question, we use data fires and count the number of fire cause."),
+  p("Then we sort the data descendingly and check the first three causes we got.")
   )
 
 
@@ -111,15 +111,13 @@ summary_page <- tabPanel(
   # (which should be related to a specific aspect of your analysis). 
   # Feel free to incorporate tables, graphics, or other elements to convey these conclusions.
   h4("Takeaway1"),
-  p("The number of fires in Texas was increased over year, and it was higher than in CA in some specific years."),
-  p("Thus Wildfire can be better prepared in Texas to minimize casualties and economic damage. "),
+  p("California, Georgia, and Taxes are the three state with most fire count from 1992-2015."),
   br(),
   h4("Takeaway2"),
-  p("Fire size class B is dominant in major of fire size class in the US."),
+  p("Taxes is the state with most growth in fire count from 2004-2011 comparing to other states in the top-5 staes with most fire count across 1992-2015."),
   br(),
   h4("Takeaway3"),
   p("Debris is the main cause of wildfires in the US. It is always high in every year."),
-  p("Local governments can warn passengers or forest rangers to prevent things like debris that can trigger a wildfire frequently."),
 )
 
 # Pass each page to a multi-page layout (`navbarPage`)
